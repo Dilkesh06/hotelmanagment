@@ -1,1 +1,1279 @@
-# hotelmanagment
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GrandStay Hotel - Luxury Accommodations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #FF6B6B;
+      --secondary: #4ECDC4;
+      --accent: #FFE66D;
+      --dark: #292F36;
+      --light: #F7FFF7;
+      --gradient: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+      --gradient-dark: linear-gradient(135deg, #e05a5a 0%, #3dbeb6 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e05a5a;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #3dbeb6;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(41, 47, 54, 0.9);
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    header.scrolled {
+      padding: 15px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      color: var(--accent);
+      margin-right: 10px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(41, 47, 54, 0.7), rgba(41, 47, 54, 0.7)), 
+                  url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    /* About Section */
+    .about {
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .about-img {
+      flex: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .about-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .about-img:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+
+    .feature-text p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Rooms Section */
+    .rooms {
+      background: url('https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+      background-attachment: fixed;
+      position: relative;
+      color: white;
+    }
+
+    .rooms::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(41, 47, 54, 0.85);
+    }
+
+    .rooms .section-title h2 {
+      color: white;
+    }
+
+    .rooms .section-title h2::after {
+      background: var(--accent);
+    }
+
+    .room-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .room-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      color: var(--dark);
+    }
+
+    .room-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .room-img {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .room-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .room-card:hover .room-img img {
+      transform: scale(1.1);
+    }
+
+    .room-content {
+      padding: 25px;
+    }
+
+    .room-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .room-price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .room-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .room-feature {
+      background: #f0f0f0;
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .room-feature i {
+      color: var(--secondary);
+    }
+
+    .room-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    .room-btn:hover {
+      background: var(--gradient-dark);
+    }
+
+    /* Booking Section */
+    .booking {
+      background: white;
+    }
+
+    .booking-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .booking-header {
+      background: var(--gradient);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .booking-header h3 {
+      font-size: 1.8rem;
+    }
+
+    .booking-form {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+      outline: none;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #e05a5a;
+    }
+
+    #bookingMessage {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+      background-attachment: fixed;
+      position: relative;
+      color: white;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(41, 47, 54, 0.9);
+    }
+
+    .contact .section-title h2 {
+      color: white;
+    }
+
+    .contact .section-title h2::after {
+      background: var(--accent);
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .contact-info {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .contact-text p, .contact-text a {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .contact-text a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .contact-map {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 50px 0 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .footer-col h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100vh;
+      background: var(--dark);
+      z-index: 2000;
+      transition: all 0.5s ease;
+      padding: 80px 30px 30px;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+    }
+
+    .mobile-menu ul li {
+      margin-bottom: 20px;
+    }
+
+    .mobile-menu ul li a {
+      font-size: 1.1rem;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+    }
+
+    .close-menu-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .about-container {
+        flex-direction: column;
+      }
+      
+      .about-img, .about-content {
+        width: 100%;
+      }
+      
+      .room-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .room-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <i class="fas fa-hotel"></i> GrandStay
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#booking">Booking</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="overlay"></div>
+  <div class="mobile-menu">
+    <button class="close-menu-btn">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Experience Luxury Redefined</h1>
+      <p>Discover unparalleled comfort and exceptional service at GrandStay Hotel, where every detail is crafted for your perfect stay.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-primary">Book Now</a>
+        <a href="#rooms" class="btn btn-secondary">Explore Rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Our Hotel</h2>
+      </div>
+      <div class="about-container">
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="GrandStay Hotel">
+        </div>
+        <div class="about-content">
+          <h3>Welcome to GrandStay</h3>
+          <p>Located in the heart of New Delhi, GrandStay Hotel offers a perfect blend of modern luxury and traditional hospitality. Our hotel is designed to provide an unforgettable experience for both business and leisure travelers.</p>
+          <p>With our prime location, exceptional amenities, and dedicated staff, we ensure every guest enjoys a stay that exceeds expectations.</p>
+          <div class="features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-wifi"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Free WiFi</h4>
+                <p>High-speed internet throughout the hotel</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Restaurant</h4>
+                <p>Fine dining with local and international cuisine</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-swimming-pool"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Swimming Pool</h4>
+                <p>Outdoor pool with panoramic city views</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-spa"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Spa & Wellness</h4>
+                <p>Rejuvenating treatments for relaxation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="rooms" id="rooms">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Rooms & Suites</h2>
+      </div>
+      <div class="room-list">
+        <div class="room-card">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Deluxe Room">
+          </div>
+          <div class="room-content">
+            <h3>Deluxe Room</h3>
+            <div class="room-price">₹4,500 / night</div>
+            <div class="room-features">
+              <span class="room-feature"><i class="fas fa-bed"></i> King Bed</span>
+              <span class="room-feature"><i class="fas fa-ruler-combined"></i> 35 sqm</span>
+              <span class="room-feature"><i class="fas fa-user-friends"></i> 2 Adults</span>
+            </div>
+            <p>Spacious room with elegant decor, premium amenities, and stunning city views.</p>
+            <a href="#booking" class="room-btn">Book Now</a>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Executive Suite">
+          </div>
+          <div class="room-content">
+            <h3>Executive Suite</h3>
+            <div class="room-price">₹8,500 / night</div>
+            <div class="room-features">
+              <span class="room-feature"><i class="fas fa-bed"></i> King Bed</span>
+              <span class="room-feature"><i class="fas fa-ruler-combined"></i> 60 sqm</span>
+              <span class="room-feature"><i class="fas fa-user-friends"></i> 2 Adults</span>
+            </div>
+            <p>Luxurious suite with separate living area, premium amenities, and panoramic views.</p>
+            <a href="#booking" class="room-btn">Book Now</a>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1566669437685-2c5a585edad5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Presidential Suite">
+          </div>
+          <div class="room-content">
+            <h3>Presidential Suite</h3>
+            <div class="room-price">₹15,000 / night</div>
+            <div class="room-features">
+              <span class="room-feature"><i class="fas fa-bed"></i> King Bed</span>
+              <span class="room-feature"><i class="fas fa-ruler-combined"></i> 100 sqm</span>
+              <span class="room-feature"><i class="fas fa-user-friends"></i> 4 Adults</span>
+            </div>
+            <p>Our most luxurious accommodation with expansive space, premium amenities, and exclusive services.</p>
+            <a href="#booking" class="room-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <div class="section-title">
+        <h2>Book Your Stay</h2>
+      </div>
+      <div class="booking-container">
+        <div class="booking-header">
+          <h3>Reservation Form</h3>
+        </div>
+        <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-control" placeholder="Your Phone" required>
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of Guests</label>
+              <input type="number" id="guests" class="form-control" placeholder="Number of Guests" min="1" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkin">Check-in Date</label>
+              <input type="date" id="checkin" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout">Check-out Date</label>
+              <input type="date" id="checkout" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="roomType">Room Type</label>
+            <select id="roomType" class="form-control" required>
+              <option value="">Select Room Type</option>
+              <option value="Deluxe Room">Deluxe Room</option>
+              <option value="Executive Suite">Executive Suite</option>
+              <option value="Presidential Suite">Presidential Suite</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="specialRequests">Special Requests</label>
+            <textarea id="specialRequests" class="form-control" rows="3" placeholder="Any special requests?"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Book Now</button>
+          <div id="bookingMessage"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3>Get In Touch</h3>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Address</h4>
+                <p>Connaught Place, New Delhi, India</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p><a href="mailto:info@grandstay.com">info@grandstay.com</a></p>
+              </div>
+            </div>
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.380122762843!2d77.2065623150826!3d28.6316209824227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd309eebec89%3A0x25106b5b8cea41a3!2sConnaught%20Place%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1629987654321!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h4>GrandStay Hotel</h4>
+          <p>Experience luxury redefined at GrandStay Hotel, where every detail is crafted for your perfect stay in the heart of New Delhi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Restaurant</a></li>
+            <li><a href="#">Swimming Pool</a></li>
+            <li><a href="#">Conference Rooms</a></li>
+            <li><a href="#">Airport Transfer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>Subscribe to our newsletter for special offers and updates.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your Email" class="form-control">
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 GrandStay Hotel. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.overlay');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    overlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Booking form submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const guests = document.getElementById('guests').value;
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const roomType = document.getElementById('roomType').value;
+      const specialRequests = document.getElementById('specialRequests').value.trim();
+      
+      const message = document.getElementById('bookingMessage');
+      
+      if (!name || !email || !phone || !guests || !checkin || !checkout || !roomType) {
+        message.textContent = 'Please fill in all required fields.';
+        message.style.display = 'block';
+        message.style.backgroundColor = '#ff6b6b';
+        return;
+      }
+      
+      // Simulate form submission
+      setTimeout(() => {
+        message.textContent = `Thank you, ${name}! Your booking for ${roomType} from ${checkin} to ${checkout} has been received. We'll contact you shortly to confirm.`;
+        message.style.display = 'block';
+        message.style.backgroundColor = '#4ECDC4';
+        
+        // Reset form
+        this.reset();
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 5000);
+      }, 1000);
+    });
+    
+    // Set minimum date for check-in to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkin').min = today;
+    
+    // Update checkout min date when checkin date changes
+    document.getElementById('checkin').addEventListener('change', function() {
+      const checkinDate = this.value;
+      document.getElementById('checkout').min = checkinDate;
+      
+      // If checkout date is before new checkin date, reset it
+      if (document.getElementById('checkout').value && 
+          document.getElementById('checkout').value < checkinDate) {
+        document.getElementById('checkout').value = '';
+      }
+    });
+  </script>
+</body>
+</html>
